@@ -1,4 +1,4 @@
-![Bing Logo](logos/mixmas-logo-full.png)
+![Bing Logo](logo/mixmas-logo-full.png)
 
 # Mixmas (version 1.0)
 
