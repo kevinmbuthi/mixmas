@@ -1,0 +1,184 @@
+<html ng-app="UIMain">
+<head>
+    <!-- [ui-framework] -->
+    <link rel="stylesheet" type="text/css" href="theme/themes/charcoal/css/Content.css" />
+    <link rel="stylesheet" type="text/css" href="theme/themes/charcoal/css/Layout.css" />
+    <!-- [end ui-framework]-->
+    <link rel="stylesheet" href="css/libs/bootstrap.css" />
+    <link rel="stylesheet" href="css/player.css" />
+    <script type="text/javascript" src="js/libs/jquery-1.11.0.min.js"></script>
+</head>
+<body ng-controller="AppLaunch as launchCtrl">
+    <div id="sideColumn1" class="mui-column expanded">
+        <div ng-controller="trackListCtrl as tracklist" data-main="content" id="desktop main-view">
+            <header id="desktopHeader">
+                <div id="desktopTitlebarWrapper">
+                    <div id="desktopTitlebar">
+                        <div class="applicationTitle">
+	                        <div id="RepeatToggle" class="RepeatToggle-On">
+	                            <span class="glyphicon glyphicon-repeat"></span>
+	                        </div>
+	                        <span class="button preTrack" id="preTrack"></span>
+	                        <span class="button playTrack" id="play"></span>
+	                        <span class="button nextTrack" id="nextTrack"></span>
+	                        <div id="ShuffleToggle" class="ShuffleToggle-Off">
+	                            <span class="glyphicon glyphicon-random"></span>
+	                        </div>
+	                        <div id="VolumeControl" class="VolumeControl glyphicon glyphicon-volume-down"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="desktopNavbar" class="mui-desktopNav mui-toolbardock">
+                    <div id="player">
+                        <div class="fa musicDetails" id="controls-musicDet">
+                            <div id="musicDetails">
+                                <section>
+                                    <aside class="musicDetails-right">
+                                        <center>
+                                            <div class="details">
+                                                <small id="timeLeft" class="timeLeft">
+                                                    <hrs></hrs>
+                                                    <mins>- -</mins> :
+                                                    <secs>- -</secs>
+                                                </small>
+                                                <small id="musicName" class="musicName"></small>
+                                                <small id="musicAlbum"></small>
+                                                <small id="SongDuration" class="SongDuration">
+                                                    <hrs></hrs>
+                                                    <mins>- -</mins> :
+                                                    <secs>- -</secs>
+                                                </small>
+                                            </div>
+                                        </center>
+                                    </aside> 
+                                </section>
+                                <section id="trackProgress-wrap" class="trackProgress-wrap">
+                                    <span id="trackProgress-base" class="trackProgress-base"></span>                                        
+                                    <svg width="0" id="progress" height="10" xmlns="http://www.w3.org/2000/svg" style="margin-top: -5px;">
+                                        <g>
+                                            <line transform="rotate(0.20000000298023224 482.3894653320313,4.916666030884406) " stroke="#FF7F50" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_1" y2="2.916666" x2="967.896251" y1="6.916666" x1="-3.117344" stroke-width="1.5" fill="none"/>
+                                        </g>
+                                    </svg>
+                                    <span id="timeControlBase" class="timeControlBase"></span>
+                                    <span class="timeControl" id="timeControl"> 1:00:23 </span>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- [main view] -->
+            <div ng-controller="UITabs as tabCtrl" class="row view-wrapper">
+                <!-- [left side ] -->
+                <div class="col-xs-3 col-sm-3 col-md-3 left-side" id="left-side">
+                    <ul class="tablist-open">
+                        <li ng-click="tabCtrl.setView(1)">
+                            <span class="musicTabIcon"></span>
+                            <a class="localTab">Music</a>
+                        </li>
+                        <li ng-click="tabCtrl.setView(2)">
+                            <span class="playlistTabIcon"></span>
+                            <a class="playlistTab">Playlist</a>
+                        </li>
+                        <li ng-click="tabCtrl.setView(5)">
+                            <span class="videPlayerIcon"></span>
+                            <a class="videoTab">Video</a>
+                        </li>
+                        <li ng-click="tabCtrl.setView(1)">
+                          <div id="SearchToggle" class="SearchToggle-Off">
+                                <span class="glyphicon glyphicon-search">
+                                    <input class="searchBar" type="text" placeholder="Title,Artist,Album">
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- [right side ] -->
+                <div id="tabsView" class="col-xs-9 col-sm-9 col-md-9 right-side">
+                    <!-- [tracklist view] -->
+                    <div class="LocalTabView" ng-show="tabCtrl.getView()==1" id="wlistLinkWindow_contentBorder" class="mui-windowContentBorder">
+                        <div id="wlistLinkWindow_contentWrapper" class="mui-windowContentWrapper">
+                            <div id="wlistLinkWindow_content" class="mui-windowContent pad" style="padding: 0px; overflow: auto;overflow-x: hidden;">
+                                <div class="table-top">
+                                    <span class="hColOne">Title</span>
+                                    <span class="hColTwo">Artist</span>
+                                    <span class="hColThree">Album</span>
+                                    <span class="hColFour">Time</span>
+                                </div>
+                                <div id="wlistLinklist1" class="mui-list">
+                                    <table id="table" cellspacing="0" cellpadding="5" style="position: relative;width:765px;">
+                                        <tbody id="track-list" class="track-list">
+                                        </tbody>
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- [tracklist view] -->
+                    <div class="PlaylistTabView" ng-show="tabCtrl.getView()==2">
+                        <center>
+                            <p style="color:grey;background-color: white;">
+                                Cooming soon
+                            </p>
+                        </center>
+                    </div>
+                    <!-- [video player] -->
+                    <div class="videoPlayerTabView" ng-show="tabCtrl.getView(5)" id="videoPlayerTabView">
+                        <video id="videPlayer" preload="none" src="null" autoplay></video>
+                    </div>
+                </div>
+            </div>
+            <input id="volumeRange" class="volumeRange" type="range" max="1" min="-1" step="0.0001" value="-0.72">
+        </div>
+        <section id="preloaderWrap" class="preloaderWrap-closed">
+            <div class="preloader-overlayGradient">
+                <h3>Welcome :)</h3>
+                <p>
+                    You can enjoy streaming music and movies from here.
+                </p>
+                <small>Scanning disk</small>
+            </div>
+        </section>
+    </div>
+    <!-- [hover slide] -->
+    <div class="hoverSlide"></div>
+    <!-- [hover slide] -->
+    <div id="desktopFooterWrapper">
+        <div class="desktopFooter" id="desktopFooter">
+            <span>
+                <a href="#">feedback <span class="feedback-smile">&hearts;</span></a>
+            </span>
+            <span id="info" class="log_info_section">
+                <span class="info1"> <span class="info_content">Loading files  </span></span>
+                <span class="info2"> Indexing files ... </span>
+            </span>
+            <small>
+                <span class="glyphicon glyphicon-th-large toggle-grid" id="toggle-grid"></span>
+                <span class="glyphicon glyphicon-th-list toggle-list" id="toggle-list"></span>
+            </small>
+            <small>
+                <span id="Close" class="glyphicon glyphicon-off Close" title="Power Off">&nbsp;</span>
+            </small>
+        </div>
+    </div>
+    <!-- [libs] -->
+    <script type="text/javascript" src="js/libs/angular.js"></script>
+    <script type="text/javascript" src="js/libs//jquery-1.11.0.min.js"></script>
+    <!-- [other] -->
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script  type="text/javascript"  src="js/helper/storage.js"></script>
+    <script type="text/javascript" src="js/helper/Meta.js"></script>
+    <!-- [main] -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <link rel="stylesheet" href="css/player.css" />
+    <script type="text/javascript" src="js/processor.js"></script>
+    <script type="text/javascript" src="js/scanner.js"></script>
+    <script type="text/javascript" src="js/playbackSync.js"></script>
+    <script type="text/javascript" src="js/handler.js"></script>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+</body>
+</html>
